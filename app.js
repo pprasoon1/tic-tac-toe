@@ -1,4 +1,3 @@
-// Use a relative path for Socket.io connection
 const socket = io('/');
 
 let currentPlayerNumber;
@@ -8,9 +7,6 @@ let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
 
-// Tic Tac Toe game logic here
-
-// Initialize Socket.io connection
 socket.on('player-number', (number) => {
     currentPlayerNumber = number;
 });
@@ -23,11 +19,12 @@ socket.on('update', (data) => {
     const { boxIndex, value } = data;
     boxes[boxIndex].innerText = value;
     boxes[boxIndex].disabled = true;
-    // Call checkWinner() here if needed
+    // Uncomment the following line if you have a checkWinner function
+    // checkWinner();  
 });
 
 socket.on('reset', () => {
-    resetGame();  // Reset the game when the server sends a reset event
+    resetGame();
 });
 
 boxes.forEach((box, index) => {
@@ -36,7 +33,6 @@ boxes.forEach((box, index) => {
             const value = currentPlayerNumber === 0 ? "0" : "X";
             box.innerText = value;
             box.disabled = true;
-            // Emit move event with player information
             socket.emit('move', { boxIndex: index, value });
         }
     });
