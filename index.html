@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe Game</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
-
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,22 +15,22 @@
     <main>
         <h1>Tic Tac Toe</h1>
         <div class="container">
-        <div class="game">
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-
+            <div class="game">
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+            </div>
         </div>
-    </div>
-    <button id="reset-btn">Restart Game</button>
-    <h3 style="padding: 15px; color: rgb(54, 53, 53);">Developed by Pranay Prasoon</h3>
+        <button id="reset-btn">Restart Game</button>
     </main>
-  <script src="app.js"></script>
+    <!-- Use the correct version of Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

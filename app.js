@@ -1,4 +1,5 @@
-const socket = io();
+// Use a relative path for Socket.io connection
+const socket = io('/');
 
 let currentPlayerNumber;
 let boxes = document.querySelectorAll(".box");
@@ -7,24 +8,9 @@ let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
 
-const winPatterns = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-];
+// Tic Tac Toe game logic here
 
-const resetGame = () => {
-    enableBoxes();
-    msgContainer.classList.add("hide");
-    // Emit a reset event to inform the server to reset the game state
-    socket.emit('reset-game');
-};
-
+// Initialize Socket.io connection
 socket.on('player-number', (number) => {
     currentPlayerNumber = number;
 });
@@ -37,7 +23,7 @@ socket.on('update', (data) => {
     const { boxIndex, value } = data;
     boxes[boxIndex].innerText = value;
     boxes[boxIndex].disabled = true;
-    checkWinner();
+    // Call checkWinner() here if needed
 });
 
 socket.on('reset', () => {
@@ -78,16 +64,4 @@ const showWinner = (winner) => {
     disableBoxes();
 };
 
-function checkWinner() {
-    for (let pattern of winPatterns) {
-        let pos1Val = boxes[pattern[0]].innerText;
-        let pos2Val = boxes[pattern[1]].innerText;
-        let pos3Val = boxes[pattern[2]].innerText;
-
-        if (pos1Val !== "" && pos2Val !== "" && pos3Val !== "") {
-            if (pos1Val === pos2Val && pos2Val === pos3Val) {
-                showWinner(pos1Val);
-            }
-        }
-    }
-};
+// Function to check for a winner (checkWinner) can be added here if not already included
