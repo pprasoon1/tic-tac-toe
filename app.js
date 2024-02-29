@@ -7,6 +7,14 @@ let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
 
+// Move resetGame declaration to the top
+const resetGame = () => {
+    // Reset game logic here
+    enableBoxes();
+    msgContainer.classList.add("hide");
+    // You might want to emit a 'reset' event to the server here if needed
+};
+
 socket.on('player-number', (number) => {
     currentPlayerNumber = number;
 });
@@ -40,13 +48,6 @@ boxes.forEach((box, index) => {
 
 newGameBtn.addEventListener("click", resetGame);
 resetBtn.addEventListener("click", resetGame);
-
-const resetGame = () => {
-    // Reset game logic here
-    enableBoxes();
-    msgContainer.classList.add("hide");
-    // You might want to emit a 'reset' event to the server here if needed
-};
 
 const disableBoxes = () => {
     for (let box of boxes) {
