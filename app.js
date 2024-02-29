@@ -1,4 +1,4 @@
-const socket = io('/');
+const socket = io('https://pprasoon1.github.io/tic-tac-toe/');
 
 let currentPlayerNumber;
 let boxes = document.querySelectorAll(".box");
@@ -40,6 +40,13 @@ boxes.forEach((box, index) => {
 
 newGameBtn.addEventListener("click", resetGame);
 resetBtn.addEventListener("click", resetGame);
+
+const resetGame = () => {
+    // Reset game logic here
+    enableBoxes();
+    msgContainer.classList.add("hide");
+    // You might want to emit a 'reset' event to the server here if needed
+};
 
 const disableBoxes = () => {
     for (let box of boxes) {

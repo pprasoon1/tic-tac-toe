@@ -1,15 +1,14 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 const http = require('http');
 const { Server } = require('socket.io');
 
 const server = http.createServer(app);
 const io = new Server(server);
 
-app.use(express.static(path.resolve('')))
+app.use(express.static(__dirname));
 
-let players = []; // Array to store player information
+let players = [];
 
 io.on('connection', (socket) => {
     console.log('A user connected');
@@ -37,10 +36,6 @@ io.on('connection', (socket) => {
         // Broadcast the updated player list to all players
         io.emit('update-players', players);
     });
-});
-
-app.get('/', (req, res) => {
-    return res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 server.listen(3000, () => {
